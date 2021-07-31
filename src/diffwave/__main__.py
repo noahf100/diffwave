@@ -49,4 +49,6 @@ if __name__ == '__main__':
       help='maximum number of training steps')
   parser.add_argument('--fp16', action='store_true', default=False,
       help='use 16-bit floating point operations for training')
+  parser.add_argument('--colab_save', action='store_true', default=False,
+      help='Use when running in colab. Saves the file to Drive after each epoch.')
   main(parser.parse_args())
