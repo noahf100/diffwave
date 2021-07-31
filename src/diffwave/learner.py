@@ -93,7 +93,7 @@ class DiffWaveLearner:
                 os.unlink(link_name)
             os.symlink(save_basename, link_name)
         if self.use_colab_save:
-            path = f'/content/gdrive/My Drive/{link_name}'
+            path = f'/content/gdrive/My Drive/{save_basename}'
             torch.save(self.state_dict(), path)
 
     def restore_from_checkpoint(self, filename='weights'):
