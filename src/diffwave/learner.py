@@ -41,6 +41,8 @@ class DiffWaveLearner:
     def __init__(self, model_dir, model, dataset, optimizer, params, use_colab_save, *args, **kwargs):
         os.makedirs(model_dir, exist_ok=True)
         self.model_dir = model_dir
+        if use_colab_save:
+            self.model_dir = '/content/gdrive/My Drive/'
         self.model = model
         self.dataset = dataset
         self.optimizer = optimizer
@@ -92,9 +94,6 @@ class DiffWaveLearner:
             if os.path.islink(link_name):
                 os.unlink(link_name)
             os.symlink(save_basename, link_name)
-        if self.use_colab_save:
-            path = f'/content/gdrive/My Drive/{save_basename}'
-            torch.save(self.state_dict(), path)
 
     def restore_from_checkpoint(self, filename='weights'):
         try:
